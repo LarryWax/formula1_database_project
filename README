@@ -1,0 +1,13 @@
+USERNAME: formula1
+PASSWORD: formula
+DATABASE: Formula1
+
+QUERY GROUP_RANKING:
+
+	SELECT gs.user_id, points
+	FROM group_subscription gs, user_ranking ur
+	WHERE gs.user_id = ur.user_id AND group_id IN (SELECT group_id
+												   FROM group_subscription
+												   WHERE user_id = "id dell'utente che sta visualizzando la pagina")
+	GROUP BY gs.user_id
+	ORDER BY points DESC;
